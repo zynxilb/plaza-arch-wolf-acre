@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f6f4ef;
+  --color-surface: #fffcf8;
+  --color-ink: #1c1b18;
+  --color-muted: #6f6a62;
+  --color-line: #e4dfd4;
+  --color-danger: #9c3b32;
+  --color-board-light: #ebecd0;
+  --color-board-dark: #739552;
+  --color-veil: rgb(255 252 248 / 0.42);
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader", Georgia, "Iowan Old Style", serif;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.75rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+}
+
+.frame {
+  box-shadow: 0 18px 40px rgb(28 27 24 / 0.12);
+}
+
+.press {
+  transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.press:active {
+  transform: scale(0.98);
+}
+
+@keyframes board-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-4px);
+  }
+  70% {
+    transform: translateX(4px);
+  }
+}
+
+.board-shake {
+  animation: board-shake 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press,
+  .board-shake,
+  .press:active {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+}
